@@ -1,5 +1,19 @@
 @extends('masterhome')
 @section('slide')
+    @if(\Illuminate\Support\Facades\Session::has('contact-success'))
+        <div class="alert alert-success">
+            {{ \Illuminate\Support\Facades\Session::get('contact-success') }}
+        </div>
+    @endif
+    @if ($errors->any())
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
     <div class="thumbnail_slider_area">
         <div class="owl-carousel">
             @foreach($news1 as $key => $new)

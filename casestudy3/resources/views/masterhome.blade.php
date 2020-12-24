@@ -54,8 +54,8 @@
                     <button id="searchIcon"><i class="fa fa-search"></i></button>
                     <div id="shide">
                         <div id="search-hide">
-                            <form action="#">
-                                <input type="text" size="40" placeholder="Search here ...">
+                            <form action="{{route('searchnews')}}" method="get">
+                                <input type="text" size="40" name="search" placeholder="Search here ...">
                             </form>
                             <button class="remove"><span><i class="fa fa-times"></i></span></button>
                         </div>
@@ -155,13 +155,14 @@
                 <div class="col-lg-4 col-md-4 col-sm-6">
                     <div class="single_footer_top wow fadeInRight">
                         <h2>Contact Form</h2>
-                        <form action="#" class="contact_form">
+                        <form action="{{route('addcontact')}}" class="contact_form" method="post">
+                            @csrf
                             <label>Name</label>
-                            <input class="form-control" type="text">
+                            <input class="form-control" name="name" type="text">
                             <label>Email*</label>
-                            <input class="form-control" type="email">
+                            <input class="form-control" name="email" type="email">
                             <label>Message*</label>
-                            <textarea class="form-control" cols="30" rows="10"></textarea>
+                            <textarea class="form-control" name="message" cols="30" rows="10"></textarea>
                             <input class="send_btn" type="submit" value="Send">
                         </form>
                     </div>

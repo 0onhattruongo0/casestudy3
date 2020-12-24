@@ -31,6 +31,8 @@ Route::get('/useredit',[HomeController::class,'usereditform'])->name('useredit')
 Route::post('/useredit/{id}',[HomeController::class,'useredit'])->name('user.edit');
 Route::get('/register-user',[HomeController::class,'registerForm'])->name('registerform');
 Route::post('/register-user',[HomeController::class,'register'])->name('register');
+Route::post('/contact',[HomeController::class,'addcontact'])->name('addcontact');
+Route::get('/searchnews',[HomeController::class,'searchnews'])->name('searchnews');
 
 
 Route::get('userlogout',[HomeController::class,'logout'])->name('user.logout');
@@ -77,6 +79,10 @@ Route::middleware('adminLogin')->prefix('admin')->group(function () {
 
     Route::group(['prefix'=>'comments'],function() {
         Route::get('/destroy/{id}', [CommentsController::class,'destroy'])->name('comments.destroy');
+    });
+    Route::group(['prefix'=>'contacts'],function(){
+        Route::get('/contactlist',[HomeController::class,'getcontact'])->name('contacts.list');
+        Route::get('/destroy/{id}',[HomeController::class,'destroycontact'])->name('contacts.destroy');
     });
     Route::group(['prefix'=>'ajax'],function(){
         Route::get('typeofnews/{id}',[ajaxController::class ,'getTypeofnews']);

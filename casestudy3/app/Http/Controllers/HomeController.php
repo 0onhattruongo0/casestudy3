@@ -2,16 +2,19 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ContactRequest;
 use App\Http\Requests\FormRegisterRequest;
 use App\Http\Requests\FormUserEditRequest;
 use App\Http\Requests\FormUserLoginRequest;
 use App\Models\Categories;
+use App\Models\Contact;
 use App\Models\News;
 use App\Models\TypeOfNews;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Session;
 
 class HomeController extends Controller
 {
@@ -118,6 +121,38 @@ class HomeController extends Controller
     {
         Auth::logout();
         return redirect()->route('home');
+    }
+
+    public function addcontact(ContactRequest $request){
+        $contact= new Contact();
+        $contact->name= $request->name;
+        $contact->email=$request->email;
+        $contact->message=$request->message;
+        $contact->save();
+        return redirect()->route('home')->with('contact-success','Cám ơn bạn đã liên hệ với chúng tôi.');
+    }
+
+    public function getcontact(){
+      $contacts= Contact::all();
+      return view('admin.Contact.contactlist',compact('contacts'));
+    }
+
+    public function destroycontact($id){
+        $contact= Contact::findOrFail($id);
+        $contact->delete();
+        Session::flash('success', 'Successful contact delete');
+        return redirect()->route('contacts.list');
+    }
+    public function searchnews(Request $request){
+        $newsindex= News::where('title','like','%'.$request->search.'%')->paginate(5);
+        $typeofnews= TypeOfNews::all();
+        $categories = Categories::all();
+        $news3=News::all()->sortByDesc('view')->take(10);
+        $news4=News::all()->sortByDesc('view')->take(3);
+        $news2=News::all();
+        $news =News::all()->sortByDesc('created_at')->take(3);
+        $news1=News::all()->where('highlights',1)->sortByDesc('created_at')->take(6);
+        return view('searchnews',compact('categories','news','news1','news2','news3','typeofnews','news4','newsindex'));
     }
 
 }
