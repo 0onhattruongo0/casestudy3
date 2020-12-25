@@ -24,13 +24,13 @@ class CommentRequest extends FormRequest
     public function rules()
     {
         return [
-            'content' => 'required',
+            'Content' => 'required',
         ];
     }
     public function messages()
     {
         $messages = [
-            'content.required' => 'Bạn phải điền dữ liệu!',
+            'Content.required' => 'Bạn phải điền dữ liệu!',
 
         ];
 
