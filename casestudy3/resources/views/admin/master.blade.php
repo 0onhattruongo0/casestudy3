@@ -42,7 +42,7 @@
                     </a>
                     <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
                         <nav class="sb-sidenav-menu-nested nav">
-                            <a class="nav-link" href="{{route('categories.index')}}">Category</a>
+                            <a class="nav-link" href="{{route('categories.list')}}">Category</a>
                             <a class="nav-link" href="{{route('typeofnews.list')}}">Type Of News</a>
                             <a class="nav-link" href="{{route('news.list')}}">News</a>
                             @if(isset(Illuminate\Support\Facades\Auth::user()->name) && (Illuminate\Support\Facades\Auth::user()->name) == 'admin')

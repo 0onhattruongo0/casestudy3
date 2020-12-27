@@ -43,11 +43,12 @@ Route::post('/login', [LoginController::class, 'login'])->name('admin.login');
 Route::get('logout', [LoginController::class, 'logout'])->name('admin.logout');
 Route::middleware('adminLogin')->prefix('admin')->group(function () {
     Route::group(['prefix'=>'categories'],function(){
-        Route::get('/category',[CategoriesController::class,'index'])->name('categories.index');
-        Route::post('/category',[CategoriesController::class,'addCategory'])->name('categories.add');
-        Route::get('/edit/{id}',[CategoriesController::class,'getCategoryById'])->name('categories.edit');
-        Route::post('/edit/{id}',[CategoriesController::class,'updateCategory'])->name('categories.update');
-        Route::get('/category/{id}',[CategoriesController::class,'deleteCategory'])->name('categories.destroy');
+        Route::get('/list',[CategoriesController::class,'getlist'])->name('categories.list');
+        Route::get('/create',[CategoriesController::class,'create'])->name('categories.create');
+        Route::post('/create',[CategoriesController::class,'store'])->name('categories.store');
+        Route::get('/{id}/edit',[CategoriesController::class,'edit'])->name('categories.edit');
+        Route::post('/{id}/edit',[CategoriesController::class,'update'])->name('categories.update');
+        Route::get('/{id}/destroy',[CategoriesController::class,'destroy'])->name('categories.destroy');
     });
     Route::group(['prefix'=>'typeofnews'],function(){
         Route::get('/list',[TypeOfNewsController::class,'getlist'])->name('typeofnews.list');

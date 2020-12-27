@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\FormCategoryRequest;
 use App\Models\Categories;
 use App\Models\TypeOfNews;
 use Illuminate\Contracts\Validation\Validator;
@@ -11,50 +12,50 @@ use Illuminate\Support\Facades\Session;
 
 class CategoriesController extends Controller
 {
-    public function index()
-    {
+    public function getlist(){
         $categories = Categories::all();
-        return view('admin.Categories.categories', compact('categories'));
-    }
+        return view('admin.Categories.list',compact('categories'));
 
-    public function addCategory(Request $request)
-    {
-            $category = new Categories();
-            $category->name = $request->name;
-            $category->save();
-            Session::flash('success', 'Successful category add');
-//        return response()->json($category);
-            return redirect()->route('categories.index');
     }
-
-    public function getCategoryById($id)
-    {
-        $category = Categories::find($id);
-        return view('admin.Categories.categories', compact('category'));
+    public function create(){
+        return view('admin.Categories.create');
     }
-
-    public function updateCategory(Request $request)
-    {
-        $category = Categories::find($request->id);
-        $category->name = $request->name;
+    public function store(FormCategoryRequest $request){
+        $category = new Categories();
+        $category->name = $request->input('name');
         $category->save();
-        Session::flash('info', 'Successful category update');
-        return redirect()->route('categories.index');
+        Session::flash('success', 'Successful category add');
+        return redirect()->route('categories.list');
     }
 
-    public function deleteCategory($id)
-    {
+    public function edit($id){
+        $categories = Categories::findOrFail($id);
+        return view('admin.Categories.edit',compact('categories'));
+    }
+    public function update($id, FormCategoryRequest $request){
+        $categories = Categories::findOrFail($id);
+        $categories->name=$request->input('name');
+        $categories->save();
+        Session::flash('success', 'Successful category update');
+        return redirect()->route('categories.list');
+    }
+    public function destroy($id){
+//        $categories = Categories::findOrFail($id);
+//        $typeofnew= DB::table('type_of_news')->where('category_id',$id);
+//        $typeofnew->delete();
+//        $categories->delete();
+//        Session::flash('success', 'Successful category delete');
+//        return redirect()->route('Categories.list');
+
         $category = Categories::find($id);
-
-
         $typeofnew = TypeOfNews::where('category_id', $id)->get();
         if (count($typeofnew)) {
             $message = "If you want to delete this type of news.First, you need to delete all news of this type of news.";
-            return redirect()->route('categories.index')->with('error', $message);
+            return redirect()->route('categories.list')->with('error', $message);
         } else
             $category->delete();
         Session::flash('success', 'Successful category delete');
-        return redirect()->route('categories.index');
+        return redirect()->route('categories.list');
     }
 
 }

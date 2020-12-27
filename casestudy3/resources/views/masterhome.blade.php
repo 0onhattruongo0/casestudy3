@@ -14,8 +14,8 @@
     <link rel="stylesheet" type="text/css" href="{{asset('assets/css/theme.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('assets/css/style.css')}}">
 <!--[if lt IE 9]>
-    <script src="{{asset('assets/js/html5shiv.min.js')}}"></script>
-    <script src="{{asset('assets/js/respond.min.js')}}"></script>
+    <script src="{{asset('/assets/js/html5shiv.min.js')}}"></script>
+    <script src="{{asset('/assets/js/respond.min.js')}}"></script>
     <![endif]-->
 </head>
 <body>
@@ -84,7 +84,7 @@
                                 <div class="singleleft_inner">
                                     <ul class="recentpost_nav wow fadeInDown">
                                         @foreach($news as $key => $new)
-                                            <li><a href="{{route('news',$new->id)}}"><img src="{{asset('storage/'.substr($new->image,7))}}" alt=""></a>
+                                            <li><a href="{{route('news',$new->id)}}"><img src="{{asset('/storage/'.substr($new->image,7))}}" alt=""></a>
                                                 <a class="recent_title" href="{{route('news',$new->id)}}">{{$new->title}}</a></li>
                                         @endforeach
                                     </ul>
@@ -176,12 +176,12 @@
         </footer>
     </div>
 </div>
-<script src="{{asset('assets/js/jquery.min.js')}}"></script>
-<script src="{{asset('assets/js/wow.min.js')}}"></script>
-<script src="{{asset('assets/js/bootstrap.min.js')}}"></script>
-<script src="{{asset('assets/js/slick.min.js')}}"></script>
-<script src="{{asset('assets/js/jquery.li-scroller.1.0.js')}}"></script>
-<script src="{{asset('assets/js/custom.js')}}"></script>
+<script src="{{asset('/assets/js/jquery.min.js')}}"></script>
+<script src="{{asset('/assets/js/wow.min.js')}}"></script>
+<script src="{{asset('/assets/js/bootstrap.min.js')}}"></script>
+<script src="{{asset('/assets/js/slick.min.js')}}"></script>
+<script src="{{asset('/assets/js/jquery.li-scroller.1.0.js')}}"></script>
+<script src="{{asset('/assets/js/custom.js')}}"></script>
 
 </body>
 </html>

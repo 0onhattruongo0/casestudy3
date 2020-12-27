@@ -26,7 +26,7 @@ class NewsController extends Controller
         $news->title = $request->input('title');
         $news->summary = $request->summary;
         $news->content = $request->Content;
-        $news->image   =$request->image->store('public/image');
+        $news->image   =$request->image->store('public');
         $news->highlights = $request->highlights;
         $news->view = $request->input('view');
         $news->typeofnews_id=$request->typeofnews_id;
@@ -59,7 +59,7 @@ class NewsController extends Controller
         $new= News::findOrFail($id);
         if($request->hasFile('image')){
             $img = $request->image;
-            $path = $img->store('public/image');
+            $path = $img->store('public');
             return $path;
         } else {
             return $new->image;

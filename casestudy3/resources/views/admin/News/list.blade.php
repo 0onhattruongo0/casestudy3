@@ -51,7 +51,7 @@
                             <tr>
                                 <td>{{$key+1}}</td>
                                 <td>{{$new->title}}</td>
-                                <td><img src="{{asset('storage/'.substr($new->image,7))}}" alt="" style="width: 100px; height:100px" ></td>
+                                <td><img src="{{asset('/storage/'.substr($new->image,7))}}" alt="" style="width: 100px; height:100px" ></td>
                                 <td>{{isset($new->TypeOfNews->name) ? $new->TypeOfNews->name : ""}} </td>
                                 <td>{{isset($new->typeofnews->categories->name) ? $new->typeofnews->categories->name : ""}}</td>
                                 <td><input class="toggle-class" data-id="{{$new->id}}" type="checkbox"

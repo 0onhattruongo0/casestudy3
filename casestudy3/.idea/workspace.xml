@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="6d60436e-9ed5-4b93-8fb4-1b90e24f8c3f" name="Default Changelist" comment="" />
+    <list default="true" id="6d60436e-9ed5-4b93-8fb4-1b90e24f8c3f" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -136,12 +138,13 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$USER_HOME$/example2" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/resources/views/admin/Categories" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/resources/views/admin/Categories" />
       <recent name="$PROJECT_DIR$/resources/views" />
       <recent name="$PROJECT_DIR$/resources/views/Admin/TypeOfnews" />
     </key>
@@ -199,6 +202,12 @@
       <workItem from="1608867663665" duration="66000" />
       <workItem from="1608883859474" duration="2083000" />
       <workItem from="1608886287600" duration="1717000" />
+      <workItem from="1608888322034" duration="1407000" />
+      <workItem from="1608890708577" duration="1083000" />
+      <workItem from="1608891882998" duration="444000" />
+      <workItem from="1608894391645" duration="8202000" />
+      <workItem from="1609080844444" duration="4196000" />
+      <workItem from="1609086610119" duration="455000" />
     </task>
     <servers />
   </component>
