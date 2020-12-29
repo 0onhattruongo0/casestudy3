@@ -18,53 +18,43 @@ use Illuminate\Support\Facades\Session;
 
 class HomeController extends Controller
 {
-    public function index(){
+    public function __construct()
+    {
+        $categories_all= Categories::all();
+        $news=News::all();
         $typeofnews= TypeOfNews::all();
-        $categories = Categories::all();
-        $news3=News::all()->sortByDesc('view')->take(10);
-        $news4=News::all()->sortByDesc('view')->take(3);
-        $news2=News::all();
-        $news =News::all()->sortByDesc('created_at')->take(10);
-        $news1=News::all()->where('highlights',1)->sortByDesc('created_at')->take(6);
-        return view('index',compact('categories','news','news1','news2','news3','typeofnews','news4'));
+        $news_master =News::all()->sortByDesc('created_at')->take(10);
+        $news_popular=News::all()->sortByDesc('view')->take(10);
+        $news_popular_foot=News::all()->sortByDesc('view')->take(3);
+        $hotnews=News::all()->where('highlights',1)->sortByDesc('created_at')->take(6);
+        view()->share('categories_all',$categories_all);
+        view()->share('news_master',$news_master);
+        view()->share('news_popular',$news_popular);
+        view()->share('typeofnews',$typeofnews);
+        view()->share('news_popular_foot',$news_popular_foot);
+        view()->share('news',$news);
+        view()->share('hotnews',$hotnews);
+    }
+    
+    public function index(){
+        return view('index');
     }
     public function category($id){
-        $typeofnews= TypeOfNews::all();
-        $categories1= Categories::findOrFail($id);
+        $categoriesfind= Categories::findOrFail($id);
         $newsindex=Categories::findOrFail($id)->news()->paginate(5);
-        $categories = Categories::all();
-        $news3=News::all()->sortByDesc('view')->take(10);
-        $news4=News::all()->sortByDesc('view')->take(3);
-        $news2=News::all();
-        $news =News::all()->sortByDesc('created_at')->take(3);
-        $news1=News::all()->where('highlights',1)->sortByDesc('created_at')->take(6);
-        return view('categoriesindex',compact('categories','news','news1','news2','news3','typeofnews','news4','categories1','newsindex'));
+        return view('categoriesindex',compact('categoriesfind','newsindex'));
     }
     public function typeofnews($id){
-        $typeofnews= TypeOfNews::all();
         $typeofnewsindex= TypeOfNews::findOrFail($id);
         $newsindex=TypeOfNews::findOrFail($id)->news()->paginate(5);
-        $categories = Categories::all();
-        $news3=News::all()->sortByDesc('view')->take(10);
-        $news4=News::all()->sortByDesc('view')->take(3);
-        $news2=News::all();
-        $news =News::all()->sortByDesc('created_at')->take(3);
-        $news1=News::all()->where('highlights',1)->sortByDesc('created_at')->take(6);
-        return view('typeofnewsindex',compact('categories','news','news1','news2','news3','typeofnews','news4','typeofnewsindex','newsindex'));
+        return view('typeofnewsindex',compact('typeofnewsindex','newsindex'));
     }
     public function news($id){
         $newsshow=News::findOrFail($id);
         $newsshow->view+=1;
         $newsshow->save();
         $newsRelated=News::where('typeofnews_id',$newsshow->typeofnews_id)->take(3)->get();
-        $typeofnews= TypeOfNews::all();
-        $categories = Categories::all();
-        $news3=News::all()->sortByDesc('view')->take(10);
-        $news4=News::all()->sortByDesc('view')->take(3);
-        $news2=News::all();
-        $news =News::all()->sortByDesc('created_at')->take(3);
-        $news1=News::all()->where('highlights',1)->sortByDesc('created_at')->take(6);
-        return view('newsindex',compact('categories','news','news1','news2','news3','typeofnews','news4','newsshow','newsRelated'));
+        return view('newsindex',compact('newsshow','newsRelated'));
     }
 
     public function usereditform(){
@@ -145,14 +135,7 @@ class HomeController extends Controller
     }
     public function searchnews(Request $request){
         $newsindex= News::where('title','like','%'.$request->search.'%')->paginate(5);
-        $typeofnews= TypeOfNews::all();
-        $categories = Categories::all();
-        $news3=News::all()->sortByDesc('view')->take(10);
-        $news4=News::all()->sortByDesc('view')->take(3);
-        $news2=News::all();
-        $news =News::all()->sortByDesc('created_at')->take(3);
-        $news1=News::all()->where('highlights',1)->sortByDesc('created_at')->take(6);
-        return view('searchnews',compact('categories','news','news1','news2','news3','typeofnews','news4','newsindex'));
+        return view('searchnews',compact('newsindex'));
     }
 
 }

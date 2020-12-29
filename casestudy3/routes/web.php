@@ -22,6 +22,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/',[HomeController::class,'index'])->name('home');
+Route::get('/masterhome',[HomeController::class,'master'])->name('masterhome');
 Route::get('/category/{id}',[HomeController::class,'category'])->name('category');
 Route::get('typeofnews/{id}',[HomeController::class,'typeofnews'])->name('typeofnews');
 Route::get('/news/{id}',[HomeController::class,'news'])->name('news');

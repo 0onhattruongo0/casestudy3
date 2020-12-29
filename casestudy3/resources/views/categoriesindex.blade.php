@@ -6,8 +6,8 @@
               <div class="category_archive_area">
                   <ol class="breadcrumb">
                       <li><a href="{{route('home')}}"><i class="fa fa-home"></i>Home<i class="fa fa-angle-right"></i></a></li>
-                      <li><a href="{{route('category',$categories1->id)}}">{{$categories1->name}}<i class="fa fa-angle-right"></i></a></li>
-                      @foreach($categories1->typeofnews as $typeofnew)
+                      <li><a href="{{route('category',$categoriesfind->id)}}">{{$categoriesfind->name}}<i class="fa fa-angle-right"></i></a></li>
+                      @foreach($categoriesfind->typeofnews as $typeofnew)
                       <li><a href="{{route('typeofnews',$typeofnew->id)}}"><small>{{$typeofnew->name}}</small><i class="fa fa-angle-right"></i></a></li>
                       @endforeach
                   </ol>

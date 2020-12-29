@@ -35,8 +35,8 @@
                         <div id="navbar" class="navbar-collapse collapse">
                             <ul class="nav navbar-nav custom_nav">
                                 <li><a href="{{route('home')}}">Trang chủ</a></li>
-                                @foreach($categories as $category)
-                                    <li><a href="/category/{{$category->id}}">{{$category->name}}</a></li>
+                                @foreach($categories_all as $category)
+                                    <li><a href="{{route('category',$category->id)}}">{{$category->name}}</a></li>
                                 @endforeach
                                 @if(isset(Illuminate\Support\Facades\Auth::user()->name))
                                     <li class="text-center" style="width: 100px;"><a href="{{route('useredit')}}"><strong>{{\Illuminate\Support\Facades\Auth::user()->name}}</strong></a></li>
@@ -68,7 +68,7 @@
         </header>
         <div class="latest_newsarea"> <span>Latest News</span>
             <ul id="ticker01" class="news_sticker">
-                @foreach($news as $key => $new)
+                @foreach($news_master as $key => $new)
                     <li><a href="{{route('news',$new->id)}}">{{$new->title}}</a></li>
                 @endforeach
             </ul>
@@ -83,7 +83,7 @@
                                 <h2><span>Recent Post</span></h2>
                                 <div class="singleleft_inner">
                                     <ul class="recentpost_nav wow fadeInDown">
-                                        @foreach($news as $key => $new)
+                                        @foreach($news_master as $key => $new)
                                             <li><a href="{{route('news',$new->id)}}"><img src="{{asset('/storage/'.substr($new->image,7))}}" alt=""></a>
                                                 <a class="recent_title" href="{{route('news',$new->id)}}">{{$new->title}}</a></li>
                                         @endforeach
@@ -101,7 +101,7 @@
                                 <h2><span>Popular Post</span></h2>
                                 <div class="singleleft_inner">
                                     <ul class="catg3_snav ppost_nav wow fadeInDown">
-                                        @foreach($news3 as $key => $new)
+                                        @foreach($news_popular as $key => $new)
                                             <li>
                                                 <div class="media"> <a href="{{route('news',$new->id)}}" class="media-left"> <img alt="" src="{{asset('storage/'.substr($new->image,7))}}"> </a>
                                                     <div class="media-body"> <a href="{{route('news',$new->id)}}" class="catg_title">{{$new->title}}</a></div>
@@ -132,7 +132,7 @@
                     <div class="single_footer_top wow fadeInLeft">
                         <h2>Popular Post</h2>
                         <ul class="catg3_snav ppost_nav">
-                            @foreach($news4 as $key => $new)
+                            @foreach($news_popular_foot as $key => $new)
                                 <li>
                                     <div class="media"> <a class="media-left" href="{{route('news',$new->id)}}"> <img src="{{asset('storage/'.substr($new->image,7))}}" alt=""> </a>
                                         <div class="media-body"> <a class="catg_title" href="{{route('news',$new->id)}}"> {{$new->title}}</a></div>
