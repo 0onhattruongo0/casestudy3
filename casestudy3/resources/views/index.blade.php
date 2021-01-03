@@ -86,10 +86,10 @@
                                     </div>
                                 </div>
                                 <div class="single_category  wow fadeInDown">
-                                    <div class="category_title"> <a href="{{route('category',$categories[5]->id)}}">{{$categories[5]->name}}</a></div>
+                                    <div class="category_title"> <a href="{{route('category',$categories[1]->id)}}">{{$categories[1]->name}}</a></div>
                                     <div class="single_category_inner">
                                         <ul class="catg_nav catg_nav2">
-                                            @foreach($categories[5]->News->sortByDesc('created_at')->take(2) as $new)
+                                            @foreach($categories[1]->News->sortByDesc('created_at')->take(2) as $new)
                                             <li>
                                                 <div class="catgimg_container"> <a class="catg1_img" href="{{route('news',$new->id)}}">
                                                         <img src="{{asset('storage/'.substr($new->image,7))}}" alt=""> </a>
@@ -105,10 +105,10 @@
                                     <div class="category_three">
                                         <div class="single_category">
                                             <?php $categories =App\Models\Categories::all();
-                                            $data = $categories[1]->News->sortByDesc('created_at')->take(5);
+                                            $data = $categories[2]->News->sortByDesc('created_at')->take(5);
                                             $data1=$data->shift();
                                             ?>
-                                            <div class="category_title"> <a href="{{route('category',$categories[1]->id)}}">{{$categories[1]->name}}</a></div>
+                                            <div class="category_title"> <a href="{{route('category',$categories[2]->id)}}">{{$categories[2]->name}}</a></div>
                                             <div class="single_category_inner">
                                                 <ul class="catg_nav catg_nav3">
                                                     <li>
@@ -141,10 +141,10 @@
                                     </div>
                                     <div class="category_four wow fadeInDown">
                                         <div class="single_category">
-                                            <?php $datasp = $categories[4]->News->sortByDesc('created_at')->take(5);
+                                            <?php $datasp = $categories[3]->News->sortByDesc('created_at')->take(5);
                                             $datasp1=$datasp->shift();
                                             ?>
-                                            <div class="category_title"> <a href="{{route('category',$categories[4]->id)}}">{{$categories[4]->name}}</a></div>
+                                            <div class="category_title"> <a href="{{route('category',$categories[3]->id)}}">{{$categories[3]->name}}</a></div>
                                             <div class="single_category_inner">
                                                 <ul class="catg_nav catg_nav3">
                                                     <li>
@@ -176,10 +176,10 @@
                                     </div>
                                 </div>
                                 <div class="single_category wow fadeInDown">
-                                    <div class="category_title"> <a href="{{route('category',$categories[6]->id)}}">{{$categories[6]->name}}</a></div>
+                                    <div class="category_title"> <a href="{{route('category',$categories[4]->id)}}">{{$categories[4]->name}}</a></div>
                                     <div class="single_category_inner">
                                         <ul class="catg3_snav catg5_nav">
-                                            @foreach($categories[3]->News->sortByDesc('created_at')->take(6) as $new)
+                                            @foreach($categories[4]->News->sortByDesc('created_at')->take(6) as $new)
                                             <li>
                                                 <div class="media"> <a href="{{route('news',$new->id)}}" class="media-left"> <img alt="" src="{{asset('storage/'.substr($new->image,7))}}"> </a>
                                                     <div class="media-body"> <a href="{{route('news',$new->id)}}" class="catg_title">{{$new->title}}</a>
